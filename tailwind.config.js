@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
+    backgroundImage: {
+      'hero-pattern': "url('/src/assets/bgImage.svg')"
+     },
     colors: {
       'brand': {
         'primary': '#7B53FF', //Purple
@@ -13,7 +16,9 @@ export default {
       'neutral': {
         'med': '#FFFFFF4D', //Semi Transparant White
         'low': '#FFFFFF1A', //Semi Transparant White
+        'blacklow':"#181721B3" 
       }
+      
     }
   },
   plugins: [

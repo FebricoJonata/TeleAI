@@ -1,26 +1,26 @@
 import React from 'react';
 
 const Sidebar = () => {
-const users = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5'];
+const users = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5', 'User 6', 'User 3', 'User 4', 'User 5', 'User 6', ];
 
   return (
-    <div className={`fixed top-0 left-0 h-full w-[300px] transform translate-x-0 transition-transform duration-300 ease-in-out`} style={{ background: 'rgba(24, 23, 33, 0.6)' }}>
+    <div className={`fixed top-0 left-0 h-full max-w-[300px] sm:w-[300px] w-full transform translate-x-0 transition-transform duration-300 ease-in-out`} style={{ background: 'rgba(24, 23, 33, 0.6)' }}>
       <div className="p-6">
         <div className="flex justify-center items-center mb-8 ">
           <div className="text-white text-3xl font-bold mr-2">TeleAI</div>
         </div>
         <div className='h-5'
         ></div>
-        <nav className="flex flex-col space-y-4 gap-4  h-[700px] overflow-y-auto no-scrollbar">
-        {users.map((user, index) => (
-            <a href="/" key={index} className="flex items-center text-white text-lg">
-              {user}
-            </a>
-          ))}
-          {/* <a href="/" className="flex items-center text-white">
-            User 1
-          </a> */}
-        </nav>
+            <nav className="flex flex-col space-y-4 gap-4 min-h-0 w-full overflow-y-auto no-scrollbar">
+            {users.map((user, index) => (
+                <a href="/" key={index} className="flex items-center text-white text-lg">
+                {user}
+                </a>
+            ))}
+            {/* <a href="/" className="flex items-center text-white">
+                User 1
+            </a> */}
+            </nav>
         <div className="absolute bottom-6 left-6 flex flex-col space-y-4 text-white">
     
           <a href="/overall-sentiments" className="flex items-center text-white">
