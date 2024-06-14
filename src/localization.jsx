@@ -11,18 +11,36 @@ i18n
         resources: {
             en: {
                 translation: {
-                    overall_sentiment: 'Overall Sentiments',
+                    overall_sentiment: 'Overall sentiments',
                     setting: 'Setting',
                     logout: 'Logout',
-
+                    create_account: 'Create account',
+                    full_name: 'Full name',
+                    full_name_placeholder: 'John Doe',
+                    email: 'Email',
+                    email_placeholder: 'example@email.com',
+                    password: 'Password',
+                    password_placeholder: 'Enter your password',
+                    confirm_password: 'Confirm Password',
+                    confirm_password_placeholder: 'Re-enter your password',
+                    register: 'Register',
                 },
             },
             id: {
                 translation: {
-                    overall_sentiment: 'Keseluruhan Sentimen',
+                    overall_sentiment: 'Keseluruhan sentimen',
                     setting: 'Pengaturan',
                     logout: 'Keluar',
-
+                    create_account: 'Buat akun',
+                    full_name: 'Nama lengkap',
+                    full_name_placeholder: 'John Doe',
+                    email: 'Email',
+                    email_placeholder: 'contoh@email.com',
+                    password: 'Kata sandi',
+                    password_placeholder: 'Masukan kata sandi Anda',
+                    confirm_password: 'Konfirmasi kata sandi',
+                    confirm_password_placeholder: 'Masukan ulang kata sandi Anda',
+                    register: 'Daftar',
                 },
             },
         },

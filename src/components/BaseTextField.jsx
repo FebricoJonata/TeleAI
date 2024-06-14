@@ -53,8 +53,8 @@ export default function BaseTextField({
                         className="absolute z-1 cursor-pointer top-0 right-0 px-[16px] py-[8px] h-full flex items-center justify-center"
                     >
                         { showPassword ?
-                            <VisibilityOffRoundedIcon />
-                            : <VisibilityRoundedIcon />
+                            <VisibilityRoundedIcon />
+                            : <VisibilityOffRoundedIcon />
                         }
                     </div>
                 )}
