@@ -3,12 +3,15 @@ export default function BaseButton({
     action, 
     prominence = 'primary',
     isFullWidth = false,
+    addClass,
     ...rest
 }) {
     return (
         <button 
-        className={`${handleProminenceClass(prominence)} ${isFullWidth ? 'w-full' : ''} ${rest}`} 
-        onClick={action}>
+            className={`${handleProminenceClass(prominence)} ${isFullWidth ? 'w-full' : ''} ${addClass}`} 
+            onClick={action}
+            {...rest}
+        >
             {title}
         </button>
     );
