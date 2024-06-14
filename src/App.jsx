@@ -3,6 +3,7 @@ import { useState } from "react";
 // import viteLogo from "/vite.svg";
 import "./App.css";
 import ChatbotPage from "./pages/chatbot";
+import DebugPage from "./pages/DebugPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,6 +14,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ChatbotPage />} />
+          {/* <Route path="/MyShop" element={<MyShop />} />
+          <Route path="/detail/:gameId" element={<GameDetail />} />
+          <Route path="/UploadItems" element={<UploadItems />} />
+          <Route path="/Library" element={<LibraryPage />} /> */}
+          <Route path="/debug" element={<DebugPage />} />
         </Routes>
       </BrowserRouter>
     </>
