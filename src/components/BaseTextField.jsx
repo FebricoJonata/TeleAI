@@ -15,6 +15,7 @@ export default function BaseTextField({
     isError = false,
     showSendButton = false,
     helperText = "",
+    addClass,
     ...rest
 }) {
     // MARK: State
@@ -37,12 +38,13 @@ export default function BaseTextField({
 
             <div className={`relative ${isFullWidth ? 'w-full' : 'w-min'}`}>
                 <input
-                    className={`z-0 focus:outline-none focus:ring-0 py-[8px] bg-neutral-low placeholder-neutral-med border-[1px] rounded-[10px] ${isError ? 'border-red-500' : 'border-white'} ${type === 'password' ? 'pl-[16px] pr-[50px]' : 'px-[16px]'} ${isFullWidth ? 'w-full' : 'w-min'} ${rest}`}
+                    className={`z-0 focus:outline-none focus:ring-0 py-[8px] bg-neutral-low placeholder-neutral-med border-[1px] rounded-[10px] ${isError ? 'border-red-500' : 'border-white'} ${type === 'password' ? 'pl-[16px] pr-[50px]' : 'px-[16px]'} ${isFullWidth ? 'w-full' : 'w-min'} ${addClass}`}
                     placeholder={placeholder}
                     type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
                     value={value}
                     onChange={(e) => onValueChanged(e.target.value)}
                     onKeyDown={handleSubmit}
+                    {...rest}
                 />
 
                 {type === 'password' && (

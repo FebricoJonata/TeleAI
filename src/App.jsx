@@ -1,10 +1,8 @@
-import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
 import "./App.css";
-import ChatbotPage from "./pages/chatbot";
+import ChatbotPage from "./pages/ChatbotPage";
 import DebugPage from "./pages/DebugPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './localization'; 
 
 function App() {
   // const [count, setCount] = useState(0);
