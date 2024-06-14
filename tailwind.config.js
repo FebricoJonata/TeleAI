@@ -11,7 +11,7 @@ export default {
         'primary': '#7B53FF', //Purple
         'secondary': '#6230FF', //Purple Pink
         'inv': '#181721', //Dark Blue
-        'semi-inv': '#1817214D', //Semi Transparant Dark Blue
+        'semi-inv': '#1817219D', //Semi Transparant Dark Blue
       },
       'neutral': {
         'med': '#FFFFFF4D', //Semi Transparant White
@@ -31,6 +31,11 @@ export default {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.bg-brand-blurry': {
+          'backgroundImage': "url('./src/assets/bgImage.svg')",
+          'backgroundSize': 'cover',
+          'backgroundPosition': 'center'
+        }
       }, ['responsive', 'hover']);
     },
   ],
