@@ -17,6 +17,7 @@ function App() {
           <Route path="/detail/:gameId" element={<GameDetail />} />
           <Route path="/UploadItems" element={<UploadItems />} />
           <Route path="/Library" element={<LibraryPage />} /> */}
+          <Route path="/debug" element={<DebugPage />} />
         </Routes>
       </BrowserRouter>
      
