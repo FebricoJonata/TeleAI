@@ -1,8 +1,14 @@
+import React, { useState } from 'react';
+import  Sidebar from '../components/sidebar'; 
+
 const ChatbotPage = ()=>{
-    return(
-        <div className="h-full w-full" style={{background: 'linear-gradient(180deg, #000428 0%, #004e92 100%)'}}>
-          <h1>tes</h1>
-        </div>
+   
+
+        return (
+            <div className="relative h-full min-h-screen">
+  
+              <Sidebar />
+            </div>
     );
 }
 export default ChatbotPage
