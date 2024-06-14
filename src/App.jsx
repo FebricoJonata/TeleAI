@@ -20,7 +20,6 @@ function App() {
           <Route path="/debug" element={<DebugPage />} />
         </Routes>
       </BrowserRouter>
-     
     </>
   );
 }
