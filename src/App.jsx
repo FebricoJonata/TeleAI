@@ -3,8 +3,9 @@ import { useState } from "react";
 // import viteLogo from "/vite.svg";
 import "./App.css";
 import ChatbotPage from "./pages/chatbot";
-import LoginPage from "./pages/login";
+import LoginPage from "./pages/login";  
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DebugPage from "./pages/DebugPage";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ChatbotPage />} />
           <Route path="/Login" element={<LoginPage />} />
+          <Route path="/Debug" element={<DebugPage />} />
         </Routes>
       </BrowserRouter>
     </>
