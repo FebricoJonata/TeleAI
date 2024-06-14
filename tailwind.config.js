@@ -3,11 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
-    color: {
+    colors: {
       'brand': {
         'primary': '#7B53FF', //Purple
-        'secondary': '#DF79FF', //Purple Pink
-        'tertiary': '#FF99FD', //Pink
+        'secondary': '#6230FF', //Purple Pink
         'inv': '#181721', //Dark Blue
       },
       'neutral': {
