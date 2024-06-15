@@ -4,10 +4,12 @@ import BaseTextField from "../components/BaseTextField";
 import BaseButton from "../components/BaseButton";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 export default function RegisterPage() {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,10 +57,7 @@ export default function RegisterPage() {
     } else {
       setError((prev) => ({ ...prev, confirmPassword: false }));
     }
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match");
-    //   return;
-    // }
+
     try {
       const res = axios
         .post(url, {
@@ -69,49 +68,17 @@ export default function RegisterPage() {
         })
         .then((res) => {
           console.log(res);
+          if (res.status == 200) {
+            console.log("AMAN BANG");
+            navigate("/login");
+          } else {
+            Alert(res.data);
+          }
         });
-      if (res.staus === 200) {
-      } else {
-      }
     } catch (error) {
       console.log(error);
     }
   };
-  //   });
-  //   const handleRegister = () => {
-  //     // Lakukan validasi formulir di sini jika diperlukan
-  //     // Contoh validasi:
-  //     if (!fullName || !email || !password || !confirmPassword) {
-  //       alert("Please fill in all fields");
-  //       return;
-  //     }
-
-  //     // Siapkan data untuk dikirim ke API
-  //     const formData = {
-  //       fullName: fullName,
-  //       email: email,
-  //       password: password,
-  //       confirmPassword: confirmPassword,
-  //     };
-
-  //     // Kirim data ke API
-  //     fetch("https://example.com/api/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         // Handle respon dari API jika diperlukan
-  //         console.log("API response:", data);
-  //         // Tambahkan logika lainnya, misalnya navigasi halaman setelah pendaftaran sukses
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error sending data to API:", error);
-  //       });
-  //   };
 
   return (
     <div className="flex h-screen w-screen bg-brand-blurry">
@@ -185,6 +152,15 @@ export default function RegisterPage() {
             isFullWidth={true}
             addClass={"font-bold"}
           />
+          <p className="text-[14px] text-white">
+            {t("dont_have_an_account")}&nbsp;
+            <a
+              href="/login"
+              className="text-brand-primary cursor-pointer hover:text-brand-secondary transition-all duration-300"
+            >
+              {t("login")}
+            </a>
+          </p>
         </div>
       </div>
     </div>
