@@ -53,6 +53,7 @@ export default function LoginPage() {
             userLoginSession.setToken(res.data.token);
             localStorage.setItem("user_id", res.data.user.user_id);
             localStorage.setItem("role", res.data.user.role);
+            localStorage.setItem("name", res.data.user.name);
             navigate("/chat", { replace: true });
           } else {
             console.log("Ga aman");

@@ -20,7 +20,7 @@ export default function RegisterPage() {
     password: false,
     confirmPassword: false,
   });
-  //   useEffect(() => {
+  //   useEffect(() => { 
   const url = "https://code-jeans-backend-v1.vercel.app/api/users/register";
   const registAPI = async (event) => {
     // if (!fullName || !email || !password || !confirmPassword) {
@@ -69,7 +69,6 @@ export default function RegisterPage() {
         .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            console.log("AMAN BANG");
             navigate("/login");
           } else {
             Alert(res.data);

@@ -22,10 +22,11 @@ function ChatLayout({ chatroomId }) {
 
   const [textValue, setTextValue] = useState("");
   const userData = userGeneralData.getData();
+  const userName = localStorage.getItem("name");
   const chatroomData = {
     id: chatroomId,
     user: {
-      name: "Hanni",
+      name: userName,
       id: 2,
     },
   };
