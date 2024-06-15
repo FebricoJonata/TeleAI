@@ -28,11 +28,6 @@ export default {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
-        '.bg-brand-blurry': {
-          'backgroundImage': "url('./src/assets/bgImage.svg')",
-          'backgroundSize': 'cover',
-          'backgroundPosition': 'center'
-        }
       }, ['responsive', 'hover']);
     },
   ],

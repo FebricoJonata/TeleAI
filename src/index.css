@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.bg-brand-blurry {
+  background-image: url('./src/assets/bgImage.svg');
+  background-size: 'cover';
+  background-position: 'center';
+}
