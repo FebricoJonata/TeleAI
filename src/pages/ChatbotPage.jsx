@@ -10,7 +10,6 @@ import ApiService from "../services/apiService";
 import { data } from "autoprefixer";
 import axios from "axios";
 import { userLoginSession } from "../services/localStorage";
-import ApiService from "../services/apiService";
 
 export default function ChatbotPage() {
   // const role = localStorage.getItem("role");
@@ -25,6 +24,7 @@ export default function ChatbotPage() {
 
 function ChatLayout({ chatroomId }) {
   const { t } = useTranslation();
+  const bottomRef = useRef(null);
 
   const { id } = useParams();
   const [textValue, setTextValue] = useState("");
@@ -134,8 +134,9 @@ function ChatLayout({ chatroomId }) {
   };
 
   const handleSubmit = () => {
+    let newChatId = chatList.length + 1;
     let newChat = {
-      id: chatList.length + 1,
+      id: newChatId,
       senderId: userData.id,
       message: textValue,
     };
@@ -154,14 +155,17 @@ function ChatLayout({ chatroomId }) {
       });
     }
   };
-
   const role = localStorage.getItem("role");
-
   return (
     <div className="w-full h-screen overflow-hidden flex flex-col">
-      {role === "ADMIN" ? <BaseNavbar title={chatroomData.user.name} /> : null}
+      {role === "ADMIN" ? (
+        <BaseNavbar
+          title={chatroomData.user.name}
+          sentimentStatus={"Very happy"}
+        />
+      ) : null}
 
-      <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center  mb-[16px]">
+      <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center mb-[16px]">
         <div className="flex flex-col lg:px-[64px] lg:pt-[32px] px-[16px] w-full h-full max-w-[900px] gap-[16px]">
           {chatList.map((chat) => (
             <BaseChatBubble
@@ -171,11 +175,13 @@ function ChatLayout({ chatroomId }) {
               recipient={chatroomData.user.name}
             />
           ))}
+
+          <div ref={bottomRef} />
         </div>
       </section>
 
       <section className="w-full flex items-center justify-center p-[16px]">
-        <div className="w-full max-w-[600px]">
+        <div className="w-full max-w-[600px] flex flex-row gap-[16px]">
           <BaseTextField
             isRequir
             ed={true}
