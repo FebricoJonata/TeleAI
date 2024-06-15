@@ -5,7 +5,7 @@ import BaseTextField from '../components/BaseTextField';
 import BaseButton from '../components/BaseButton';
 import { useTranslation } from 'react-i18next';
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const { t } = useTranslation();
 
     const [fullName, setFullName] = useState('');

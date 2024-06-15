@@ -1,7 +1,7 @@
 import "./App.css";
 import ChatbotPage from "./pages/ChatbotPage";
 import DebugPage from "./pages/DebugPage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/RegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './localization'; 
 
