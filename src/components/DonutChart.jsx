@@ -1,5 +1,25 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+
+// Chart.plugins.register({
+//   afterDraw: function(chart) {
+//     if (chartData.datasets[0].data.every(item => item === 0)) {
+//         let ctx = chart.chart.ctx;
+//         let width = chart.chart.width;
+//         let height = chart.chart.height;
+
+//         console.log("Chart is empty");
+
+//         chart.clear();
+//         ctx.save();
+//         ctx.textAlign = 'center';
+//         ctx.textBaseline = 'middle';
+//         ctx.fillText('No data to display', width / 2, height / 2);
+//         ctx.restore();
+//     }
+//   }
+// })
 
 function DoughnutChart({ chartData }) {
     return (
@@ -13,12 +33,12 @@ function DoughnutChart({ chartData }) {
                     labels: {
                         color: "white",
                         font: {
-                            style: "bold",
+                            weight: "bold",
                             size: 16
                         }
                     }
                 },
-            }
+            },
           }}
         />
       </div>

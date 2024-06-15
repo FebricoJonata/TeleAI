@@ -8,7 +8,7 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 code {
@@ -17,9 +17,9 @@ code {
 }
 
 .bg-brand-blurry {
-  background-image: url('./src/assets/bgImage.svg');
-  background-size: 'cover';
-  background-position: 'center';
+  background-image: url('./assets/bgImage.svg');
+  background-size: cover;
+  background-position: center;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {

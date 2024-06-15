@@ -31,7 +31,7 @@ export default function BaseTextField({
     
     // MARK: View
     return (
-        <div className={`flex flex-col text-[18px] text-white ${isFullWidth ? 'w-full' : 'w-min'}`}>
+        <div className={`flex flex-col text-[14px] lg:text-[16px] text-white ${isFullWidth ? 'w-full' : 'w-min'}`}>
             <label className='font-semibold mb-[8px]'>
                 {title}
                 {isRequired && (<span className="text-red-500">*</span>)}
@@ -39,9 +39,9 @@ export default function BaseTextField({
 
             <div className={`relative ${isFullWidth ? 'w-full' : 'w-min'}`}>
                 <input
-                    className={`z-0 focus:outline-none focus:ring-0 py-[8px] bg-neutral-low placeholder-neutral-med border-[1px] rounded-[10px] ${isError ? 'border-red-500' : 'border-white'} ${type === 'password' ? 'pl-[16px] pr-[50px]' : 'px-[16px]'} ${isFullWidth ? 'w-full' : 'w-min'} ${addClass}`}
+                    className={`z-0 focus:outline-none focus:ring-0 py-[8px] bg-neutral-low placeholder:text-[14px] lg:placeholder:text-[16px] placeholder-neutral-med border-[1px] rounded-[10px] ${isError ? 'border-red-500' : 'border-white'} ${(type === 'password' || showSendButton) ? 'pl-[16px] pr-[50px]' : 'px-[16px]'} ${isFullWidth ? 'w-full' : 'w-min'} ${addClass}`}
                     placeholder={placeholder}
-                    type={type === 'password' ? (showPassword ? 'text' : 'password') : 'date' ? "date" : type}
+                    type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
                     value={value}
                     onChange={(e) => onValueChanged(e.target.value)}
                     onKeyDown={handleSubmit}
