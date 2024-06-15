@@ -4,15 +4,19 @@ import BaseTextField from "../components/BaseTextField";
 import BaseNavbar from "../layout/Navbar";
 import BaseSidebar from "../layout/Sidebar";
 import { userGeneralData } from "../services/localStorage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ApiService from "../services/apiService";
 import { data } from "autoprefixer";
+import axios from "axios";
+import { userLoginSession } from "../services/localStorage";
 
 export default function ChatbotPage() {
+  const chatroomId = localStorage.getItem("room_id");
   return (
     <div className="flex flex-row h-screen min-h-screen w-screen bg-brand-blurry">
       <BaseSidebar />
-      <ChatLayout chatroomId={1} />
+      <ChatLayout chatroomId={chatroomId} />
     </div>
   );
 }
@@ -20,16 +24,47 @@ export default function ChatbotPage() {
 function ChatLayout({ chatroomId }) {
   const { t } = useTranslation();
 
+  const { id } = useParams();
   const [textValue, setTextValue] = useState("");
   const userData = userGeneralData.getData();
   const chatroomData = {
     id: chatroomId,
     user: {
       name: "Hanni",
-      id: 2,
+      id: id,
     },
   };
   const [chatList, setChatList] = useState([]);
+  const token = userLoginSession.getToken(); // Ambil token dari localStorage atau dari mana pun Anda menyimpannya
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.post(
+          "https://code-jeans-backend-v1.vercel.app/api/chat/all",
+          {
+            chat_room_id: id,
+          },
+          config
+        );
+        if (response.status === 200) {
+          const chatHistory = response.data.body.data;
+          console.log(chatHistory);
+          setChatList(chatHistory);
+        } else {
+          console.error("Failed to fetch chat history");
+        }
+      } catch (error) {
+        console.error("Error fetching chat history:", error.message);
+      }
+    };
+
+    fetchChatHistory();
+  }, [id]);
 
   const generateChat = async (message) => {
     try {
@@ -42,8 +77,8 @@ function ChatLayout({ chatroomId }) {
         ],
       });
 
-      if (response.message === '') {
-        return 'ERROR!'
+      if (response.message === "") {
+        return "ERROR!";
       }
 
       return response.message;
@@ -70,7 +105,6 @@ function ChatLayout({ chatroomId }) {
         message: replyValue,
       };
       setChatList((exisitingChatList) => [...exisitingChatList, newReply]);
-
     });
   };
 

@@ -53,7 +53,7 @@ export default function LoginPage() {
             userLoginSession.setToken(res.data.token);
             localStorage.setItem("user_id", res.data.user.user_id);
             console.log("AMAN BANG");
-            navigate("/chat", { replace: true });
+            navigate("/chat/0", { replace: true });
           } else {
             console.log("Ga aman");
           }

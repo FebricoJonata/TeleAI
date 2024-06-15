@@ -17,9 +17,9 @@ export default function BaseSidebar() {
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("user_id");
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
+    // if (storedUserId) {
+    //   setUserId(storedUserId);
+    // }
 
     const url = "https://code-jeans-backend-v1.vercel.app/api/chat/chat-rooms";
     const token = userLoginSession.getToken(); // Ambil token dari localStorage atau dari mana pun Anda menyimpannya
@@ -32,7 +32,7 @@ export default function BaseSidebar() {
       try {
         var chatRoomListArray = [];
         const res = await axios
-          .post(url, { user_id: 1 }, config)
+          .post(url, { user_id: storedUserId }, config)
           .then((res) => {
             console.log(res);
 
@@ -45,7 +45,7 @@ export default function BaseSidebar() {
                   key: chatRoomModel.chat_room_id,
                   title: chatRoomModel.room_name,
                   function: () => {
-                    // navigate(`/chat/${chatRoomModel.chat_room_id}`);
+                    navigate(`/chat/${chatRoomModel.chat_room_id}`);
                   },
                 });
               });
