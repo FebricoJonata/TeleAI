@@ -1,9 +1,6 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const apiUrl = process.env.BASE_URL;
+const apiUrl = "https://code-jeans-backend-v1.vercel.app";
 
 const ApiService = {
   // GET request
