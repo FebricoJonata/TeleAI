@@ -13,6 +13,7 @@ export default function BaseSidebar() {
   const [userId, setUserId] = useState("");
   const [chatRoomList, setChatRoomList] = useState([]);
   const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("user_id");
@@ -44,7 +45,7 @@ export default function BaseSidebar() {
                   key: chatRoomModel.chat_room_id,
                   title: chatRoomModel.room_name,
                   function: () => {
-                    navigate(`/chat/${chatRoomModel.chat_room_id}`);
+                    // navigate(`/chat/${chatRoomModel.chat_room_id}`);
                   },
                 });
               });
@@ -60,9 +61,6 @@ export default function BaseSidebar() {
     };
     fetchChatRooms();
   }, []);
-
-  // MARK: State
-  const [isExpanded, setIsExpanded] = useState(false);
 
   var menuList = [
     {
