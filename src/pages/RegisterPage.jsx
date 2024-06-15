@@ -98,16 +98,22 @@ export default function RegisterPage() {
                         />
                     </div>
 
-                    <BaseButton 
-                        title={t('register')}
-                        action={() => debugAction("Button Primary")} 
-                        isFullWidth={true}
-                        addClass={'font-bold'}
-                    />
+                    <div className='flex flex-col gap-[16px] align-center items-center'>
+                        <BaseButton 
+                            title={t('register')}
+                            action={() => debugAction("Button Primary")} 
+                            isFullWidth={true}
+                            addClass={'font-bold'}
+                        />
 
-                    <p className='font-[18px]'>
-                        Already have an account?
-                    </p>
+                        <p className='text-[14px] text-white'>
+                            Already have an account? 
+                            <a 
+                            className='text-brand-primary cursor-pointer hover:text-brand-secondary transition-all duration-300'>
+                                Register
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
