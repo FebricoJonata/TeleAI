@@ -4,9 +4,10 @@ import BaseTextField from "../components/BaseTextField";
 import BaseNavbar from "../layout/Navbar";
 import BaseSidebar from "../layout/Sidebar";
 import { userGeneralData } from "../services/localStorage";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ApiService from "../services/apiService";
-import { data } from "autoprefixer";
+import BasePhonePopUp from "../layout/Phone";
+import BaseButton from "../components/BaseButton";
 
 export default function ChatbotPage() {
   return (
@@ -19,6 +20,7 @@ export default function ChatbotPage() {
 
 function ChatLayout({ chatroomId }) {
   const { t } = useTranslation();
+  const bottomRef = useRef(null);
 
   const [textValue, setTextValue] = useState("");
   const userData = userGeneralData.getData();
@@ -30,6 +32,10 @@ function ChatLayout({ chatroomId }) {
     },
   };
   const [chatList, setChatList] = useState([]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatList]);
 
   const generateChat = async (message) => {
     try {
@@ -54,8 +60,9 @@ function ChatLayout({ chatroomId }) {
   };
 
   const handleSubmit = () => {
+    let newChatId = chatList.length + 1
     let newChat = {
-      id: chatList.length + 1,
+      id: newChatId,
       senderId: userData.id,
       message: textValue,
     };
@@ -64,13 +71,14 @@ function ChatLayout({ chatroomId }) {
     setTextValue("");
 
     generateChat(textValue).then((replyValue) => {
+      let newReplyId = chatList.length + 1
       let newReply = {
-        id: chatList.length + 1,
+        id: newReplyId,
         senderId: -1,
         message: replyValue,
       };
-      setChatList((exisitingChatList) => [...exisitingChatList, newReply]);
 
+      setChatList((exisitingChatList) => [...exisitingChatList, newReply]);
     });
   };
 
@@ -78,7 +86,7 @@ function ChatLayout({ chatroomId }) {
     <div className="w-full h-screen overflow-hidden flex flex-col">
       <BaseNavbar title={chatroomData.user.name} />
 
-      <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center  mb-[16px]">
+      <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center mb-[16px]">
         <div className="flex flex-col lg:px-[64px] lg:pt-[32px] px-[16px] w-full h-full max-w-[900px] gap-[16px]">
           {chatList.map((chat) => (
             <BaseChatBubble
@@ -88,11 +96,13 @@ function ChatLayout({ chatroomId }) {
               recipient={chatroomData.user.name}
             />
           ))}
+
+          <div ref={bottomRef} />
         </div>
       </section>
 
       <section className="w-full flex items-center justify-center p-[16px]">
-        <div className="w-full max-w-[600px]">
+        <div className="w-full max-w-[600px] flex flex-row gap-[16px]">
           <BaseTextField
             placeholder={t("enter_your_message")}
             isFullWidth={true}
@@ -100,6 +110,12 @@ function ChatLayout({ chatroomId }) {
             onValueChanged={setTextValue}
             onSubmit={() => handleSubmit()}
             showSendButton={true}
+          />
+
+          <BaseButton 
+            prominence="secondary"
+            title={"MIC"}
+            action={() => handleSubmit()}
           />
         </div>
       </section>
