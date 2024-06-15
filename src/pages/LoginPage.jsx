@@ -4,16 +4,17 @@ import BaseTextField from "../components/BaseTextField";
 import BaseButton from "../components/BaseButton";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { userLoginSession } from "../services/localStorage";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const [error, setError] = useState({
-    fullName: false,
     email: false,
     password: false,
-    confirmPassword: false,
   });
   //   useEffect(() => {
   const url = "https://code-jeans-backend-v1.vercel.app/api/users/login";
@@ -38,11 +39,6 @@ export default function LoginPage() {
     } else {
       setError((prev) => ({ ...prev, password: false }));
     }
-
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match");
-    //   return;
-    // }
     try {
       const res = axios
         .post(url, {
@@ -51,9 +47,13 @@ export default function LoginPage() {
         })
         .then((res) => {
           console.log(res);
+
           //   localStorage.setItem("token", res.token);
           if (res.status === 200) {
+            userLoginSession.setToken(res.data.token);
+            localStorage.setItem("user_id", res.data.user.user_id);
             console.log("AMAN BANG");
+            navigate("/chat", { replace: true });
           } else {
             console.log("Ga aman");
           }
@@ -83,6 +83,8 @@ export default function LoginPage() {
             placeholder={t("email_placeholder")}
             type="email"
             value={email}
+            isError={error.email}
+            helperText={error.email == true ? "Please Input The field" : ""}
             onValueChanged={(e) => setEmail(e)}
             isFullWidth={true}
           />
@@ -92,6 +94,8 @@ export default function LoginPage() {
             placeholder={t("password_placeholder")}
             type="password"
             value={password}
+            isError={error.password}
+            helperText={error.password == true ? "Please Input The field" : ""}
             onValueChanged={(e) => setPassword(e)}
             isFullWidth={true}
           />
