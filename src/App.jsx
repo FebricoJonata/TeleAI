@@ -4,6 +4,7 @@ import DebugPage from "./pages/DebugPage";
 import LoginPage from "./pages/RegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './localization'; 
+import AllSentiments from "./pages/AllSentiments";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<ChatbotPage />} />
           <Route path="/Login" element={<LoginPage />} />
           <Route path="/Debug" element={<DebugPage />} />
+          <Route path="/AllSentiments" element={<AllSentiments/>}/>
         </Routes>
       </BrowserRouter>
     </>

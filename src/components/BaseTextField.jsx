@@ -2,6 +2,7 @@ import { useState } from "react";
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import { useColorScheme } from "@mui/material";
 
 export default function BaseTextField({
     title = '', 
@@ -40,7 +41,7 @@ export default function BaseTextField({
                 <input
                     className={`z-0 focus:outline-none focus:ring-0 py-[8px] bg-neutral-low placeholder-neutral-med border-[1px] rounded-[10px] ${isError ? 'border-red-500' : 'border-white'} ${type === 'password' ? 'pl-[16px] pr-[50px]' : 'px-[16px]'} ${isFullWidth ? 'w-full' : 'w-min'} ${addClass}`}
                     placeholder={placeholder}
-                    type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
+                    type={type === 'password' ? (showPassword ? 'text' : 'password') : 'date' ? "date" : type}
                     value={value}
                     onChange={(e) => onValueChanged(e.target.value)}
                     onKeyDown={handleSubmit}
@@ -58,6 +59,9 @@ export default function BaseTextField({
                         }
                     </div>
                 )}
+
+                {/* buat setting warna calendar */}
+                {type=== 'date'}
 
                 {showSendButton === true && (
                     <div

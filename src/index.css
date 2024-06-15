@@ -21,3 +21,7 @@ code {
   background-size: 'cover';
   background-position: 'center';
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the color to white */
+}
