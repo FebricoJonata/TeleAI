@@ -48,8 +48,8 @@ function ChatLayout({ chatroomId }) {
         ],
       });
 
-      if (response.message === '') {
-        return 'ERROR!'
+      if (response.message === "") {
+        return "ERROR!";
       }
 
       return response.message;
@@ -82,9 +82,11 @@ function ChatLayout({ chatroomId }) {
     });
   };
 
+  const role = localStorage.getItem("role");
+
   return (
     <div className="w-full h-screen overflow-hidden flex flex-col">
-      <BaseNavbar title={chatroomData.user.name} />
+      {role === "ADMIN" ? <BaseNavbar title={chatroomData.user.name} /> : null}
 
       <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center mb-[16px]">
         <div className="flex flex-col lg:px-[64px] lg:pt-[32px] px-[16px] w-full h-full max-w-[900px] gap-[16px]">
