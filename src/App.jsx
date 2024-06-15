@@ -15,7 +15,8 @@ function App() {
         <Routes>
           {/* MARK: Authorized */}
           <Route path="/chat" element={
-            <BaseProtectedRoute allow={userLoginSession.isAuthorized()} redirectPath="/login"><ChatbotPage /></BaseProtectedRoute>
+            // <BaseProtectedRoute allow={userLoginSession.isAuthorized()} redirectPath="/login"><ChatbotPage /></BaseProtectedRoute>
+            <ChatbotPage />
           }/>
 
           {/* MARK: Unauthorized */}
