@@ -6,6 +6,7 @@ import logo from "../assets/logo.svg";
 import { userLoginSession } from "../services/localStorage";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { userGeneralData } from "../services/localStorage";
 
 export default function BaseSidebar() {
   const { t } = useTranslation();
@@ -16,12 +17,12 @@ export default function BaseSidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const role = localStorage.getItem("role");
-
+  const userData = userGeneralData.getData();
   useEffect(() => {
     const storedUserId = localStorage.getItem("user_id");
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
+    // if (storedUserId) {
+    //   setUserId(storedUserId);
+    // }
 
     const url = "https://code-jeans-backend-v1.vercel.app/api/chat/chat-rooms";
     const token = userLoginSession.getToken(); // Ambil token dari localStorage atau dari mana pun Anda menyimpannya
@@ -34,7 +35,7 @@ export default function BaseSidebar() {
       try {
         var chatRoomListArray = [];
         const res = await axios
-          .post(url, { user_id: 1 }, config)
+          .post(url, { user_id: userData.id }, config)
           .then((res) => {
             console.log(res);
 
@@ -47,7 +48,7 @@ export default function BaseSidebar() {
                   key: chatRoomModel.chat_room_id,
                   title: chatRoomModel.room_name,
                   function: () => {
-                    // navigate(`/chat/${chatRoomModel.chat_room_id}`);
+                    navigate(`/chat/${chatRoomModel.chat_room_id}`);
                   },
                 });
               });
@@ -91,7 +92,7 @@ export default function BaseSidebar() {
       key: "logout",
       title: t("logout"),
       function: () => {
-        userLoginSession.setToken(null);
+        userLoginSession.removeToken();
         console.log(userLoginSession.getToken());
         navigate("/login");
       },
@@ -113,7 +114,7 @@ export default function BaseSidebar() {
 
   // MARK: View
   return (
-    <div className="relative">
+    <div className={`lg:relative absolute lg:w-[280px] w-0 z-50`}>
       <div
         className={`absolute z-30 text-white min-w-[32px] min-h-[32px] lg:collapse transition-all duration-300 ${
           isExpanded ? "ml-[240px] my-[12px]" : "m-[12px]"
@@ -124,7 +125,7 @@ export default function BaseSidebar() {
       </div>
 
       <aside
-        className={`z-20 bg-brand-semi-inv w-[280px] max-h-screen h-screen flex flex-col jusify-start items-start py-[24px] transition-all duration-300 lg:translate-x-0 ${
+        className={`z-20 bg-brand-inv lg:bg-brand-semi-inv w-[280px] max-h-screen h-screen flex flex-col jusify-start items-start py-[24px] transition-all duration-300 lg:translate-x-0 ${
           isExpanded ? "translate-x-0" : "-translate-x-full"
         }`}
       >

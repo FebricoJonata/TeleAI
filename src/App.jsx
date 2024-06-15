@@ -16,7 +16,7 @@ function App() {
         <Routes>
           {/* MARK: Authorized */}
           <Route
-            path="/chat"
+            path="/chat/:id"
             element={
               <BaseProtectedRoute
                 allow={() => userLoginSession.isAuthorized()}

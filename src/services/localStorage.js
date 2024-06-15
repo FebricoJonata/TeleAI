@@ -23,7 +23,7 @@ export const userGeneralData = {
     keyName: "name",
     keyEmail: "email",
     keyRole: "keyRole",
-    setData({id, name, email, role}) {
+    setData(id, name, email, role) {
         localStorage.setItem(`${this.keyPrefix}_${this.keyId}`, id)
         localStorage.setItem(`${this.keyPrefix}_${this.keyName}`, name)
         localStorage.setItem(`${this.keyPrefix}_${this.keyEmail}`, email)
