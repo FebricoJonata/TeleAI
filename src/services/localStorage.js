@@ -7,10 +7,13 @@ export const userLoginSession = {
         localStorage.removeItem(this.key);
     },
     getToken() {
+        console.log(localStorage.getItem(this.key));
         return localStorage.getItem(this.key);
+        
     },
     isAuthorized() {
-        return localStorage.getItem(this.key) !== null;
+        console.log(localStorage.getItem(this.key));
+        return localStorage.getItem(this.key) != null;
     }
 }
 
