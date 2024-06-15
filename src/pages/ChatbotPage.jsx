@@ -4,12 +4,13 @@ import BaseTextField from "../components/BaseTextField";
 import BaseNavbar from "../layout/Navbar";
 import BaseSidebar from "../layout/Sidebar";
 import { userGeneralData } from "../services/localStorage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import ApiService from "../services/apiService";
 import { data } from "autoprefixer";
 import axios from "axios";
 import { userLoginSession } from "../services/localStorage";
+import ApiService from "../services/apiService";
 
 export default function ChatbotPage() {
   // const role = localStorage.getItem("role");
@@ -104,6 +105,10 @@ function ChatLayout({ chatroomId }) {
       console.error("Error fetching chat history:", error.message);
     }
   };
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatList]);
+
   const generateChat = async (message) => {
     try {
       // if (role === "USER") {
