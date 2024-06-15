@@ -92,7 +92,7 @@ export default function BaseSidebar() {
       key: "logout",
       title: t("logout"),
       function: () => {
-        userLoginSession.setToken(null);
+        userLoginSession.removeToken();
         console.log(userLoginSession.getToken());
         navigate("/login");
       },
