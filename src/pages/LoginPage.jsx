@@ -4,7 +4,7 @@ import BaseTextField from "../components/BaseTextField";
 import BaseButton from "../components/BaseButton";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { userLoginSession } from "../services/localStorage";
+import { userGeneralData, userLoginSession } from "../services/localStorage";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -46,13 +46,18 @@ export default function LoginPage() {
           password: password,
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data.user);
 
           //   localStorage.setItem("token", res.token);
           if (res.status === 200) {
             userLoginSession.setToken(res.data.token);
-            localStorage.setItem("user_id", res.data.user.user_id);
-            console.log("AMAN BANG");
+            localStorage.setItem("role", res.data.user.role);
+            userGeneralData.setData(
+              res.data.user.user_id,
+              res.data.user.name,
+              res.data.user.email,
+              res.data.user.role
+            );
             navigate("/chat/0", { replace: true });
           } else {
             console.log("Ga aman");

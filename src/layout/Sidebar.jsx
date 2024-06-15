@@ -6,6 +6,7 @@ import logo from "../assets/logo.svg";
 import { userLoginSession } from "../services/localStorage";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { userGeneralData } from "../services/localStorage";
 
 export default function BaseSidebar() {
   const { t } = useTranslation();
@@ -15,6 +16,8 @@ export default function BaseSidebar() {
   const [selectedChatRoom, setSelectedChatRoom] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const role = localStorage.getItem("role");
+  const userData = userGeneralData.getData();
   useEffect(() => {
     const storedUserId = localStorage.getItem("user_id");
     // if (storedUserId) {
@@ -32,7 +35,7 @@ export default function BaseSidebar() {
       try {
         var chatRoomListArray = [];
         const res = await axios
-          .post(url, { user_id: storedUserId }, config)
+          .post(url, { user_id: userData.id }, config)
           .then((res) => {
             console.log(res);
 
@@ -49,8 +52,9 @@ export default function BaseSidebar() {
                   },
                 });
               });
-
-              setChatRoomList(chatRoomListArray);
+              if (role === "ADMIN") {
+                setChatRoomList(chatRoomListArray);
+              }
             } else {
               console.log("Ga aman");
             }
@@ -63,12 +67,19 @@ export default function BaseSidebar() {
   }, []);
 
   var menuList = [
+    // ...(userRole === "ADMIN"
+    //   ? [
+    //       {
+    //         key: "overall-sentiment",
+    //         title: t("overall_sentiment"),
+    //         function: () => navigate("/overall-sentiment"),
+    //       },
+    //     ]
+    //   : []),
     {
       key: "overall-sentiment",
       title: t("overall_sentiment"),
-      function: () => {
-        useNavigate("/overall-sentiment");
-      },
+      function: () => navigate("/overall-sentiment"),
     },
     {
       key: "setting",
@@ -87,6 +98,7 @@ export default function BaseSidebar() {
       },
     },
   ];
+
   const [selectedMenu, setSelectedMenu] = useState(null);
 
   // MARK: Helper
