@@ -6,8 +6,6 @@ import BaseSidebar from "../layout/Sidebar";
 import { userGeneralData } from "../services/localStorage";
 import { useState, useRef, useEffect } from "react";
 import ApiService from "../services/apiService";
-import BasePhonePopUp from "../layout/Phone";
-import BaseButton from "../components/BaseButton";
 
 export default function ChatbotPage() {
   return (
@@ -48,8 +46,8 @@ function ChatLayout({ chatroomId }) {
         ],
       });
 
-      if (response.message === "") {
-        return "ERROR!";
+      if (response.message === '') {
+        return 'ERROR!'
       }
 
       return response.message;
@@ -82,11 +80,9 @@ function ChatLayout({ chatroomId }) {
     });
   };
 
-  const role = localStorage.getItem("role");
-
   return (
     <div className="w-full h-screen overflow-hidden flex flex-col">
-      {role === "ADMIN" ? <BaseNavbar title={chatroomData.user.name} /> : null}
+      <BaseNavbar title={chatroomData.user.name} sentimentStatus={"Very happy"} />
 
       <section className="flex w-full h-full overflow-y-scroll no-scrollbar items-end justify-center mb-[16px]">
         <div className="flex flex-col lg:px-[64px] lg:pt-[32px] px-[16px] w-full h-full max-w-[900px] gap-[16px]">
@@ -112,12 +108,6 @@ function ChatLayout({ chatroomId }) {
             onValueChanged={setTextValue}
             onSubmit={() => handleSubmit()}
             showSendButton={true}
-          />
-
-          <BaseButton 
-            prominence="secondary"
-            title={"MIC"}
-            action={() => handleSubmit()}
           />
         </div>
       </section>
