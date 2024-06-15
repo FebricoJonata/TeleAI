@@ -18,6 +18,6 @@ code {
 
 .bg-brand-blurry {
   background-image: url('./assets/bgImage.svg');
-  background-size: 'cover';
-  background-position: 'center';
+  background-size: cover;
+  background-position: center;
 }
