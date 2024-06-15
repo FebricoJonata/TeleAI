@@ -15,6 +15,8 @@ export default function BaseSidebar() {
   const [selectedChatRoom, setSelectedChatRoom] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const role = localStorage.getItem("role");
+
   useEffect(() => {
     const storedUserId = localStorage.getItem("user_id");
     if (storedUserId) {
@@ -49,8 +51,9 @@ export default function BaseSidebar() {
                   },
                 });
               });
-
-              setChatRoomList(chatRoomListArray);
+              if (role === "ADMIN") {
+                setChatRoomList(chatRoomListArray);
+              }
             } else {
               console.log("Ga aman");
             }
@@ -63,12 +66,19 @@ export default function BaseSidebar() {
   }, []);
 
   var menuList = [
+    // ...(userRole === "ADMIN"
+    //   ? [
+    //       {
+    //         key: "overall-sentiment",
+    //         title: t("overall_sentiment"),
+    //         function: () => navigate("/overall-sentiment"),
+    //       },
+    //     ]
+    //   : []),
     {
       key: "overall-sentiment",
       title: t("overall_sentiment"),
-      function: () => {
-        useNavigate("/overall-sentiment");
-      },
+      function: () => navigate("/overall-sentiment"),
     },
     {
       key: "setting",
@@ -87,6 +97,7 @@ export default function BaseSidebar() {
       },
     },
   ];
+
   const [selectedMenu, setSelectedMenu] = useState(null);
 
   // MARK: Helper

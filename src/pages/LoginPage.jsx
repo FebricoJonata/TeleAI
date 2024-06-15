@@ -52,7 +52,7 @@ export default function LoginPage() {
           if (res.status === 200) {
             userLoginSession.setToken(res.data.token);
             localStorage.setItem("user_id", res.data.user.user_id);
-            console.log("AMAN BANG");
+            localStorage.setItem("role", res.data.user.role);
             navigate("/chat", { replace: true });
           } else {
             console.log("Ga aman");
