@@ -8,45 +8,8 @@ import { useTranslation } from 'react-i18next';
 export default function RegisterPage() {
     const { t } = useTranslation();
 
-    const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    
-    const handleRegister = () => {
-        // Lakukan validasi formulir di sini jika diperlukan
-        // Contoh validasi:
-        if (!fullName || !email || !password || !confirmPassword) {
-            alert('Please fill in all fields');
-            return;
-        }
-
-        // Siapkan data untuk dikirim ke API
-        const formData = {
-            fullName: fullName,
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword
-        };
-
-        // Kirim data ke API
-        fetch('https://example.com/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Handle respon dari API jika diperlukan
-                console.log('API response:', data);
-                // Tambahkan logika lainnya, misalnya navigasi halaman setelah pendaftaran sukses
-            })
-            .catch(error => {
-                console.error('Error sending data to API:', error);
-            });
-    };
 
     return (
         <div className="flex h-screen w-screen bg-brand-blurry">
@@ -104,10 +67,6 @@ export default function RegisterPage() {
                         isFullWidth={true}
                         addClass={'font-bold'}
                     />
-
-                    <p className='font-[18px]'>
-                        Already have an account?
-                    </p>
                 </div>
             </div>
         </div>
