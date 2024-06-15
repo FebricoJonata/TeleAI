@@ -113,7 +113,7 @@ export default function BaseSidebar() {
 
   // MARK: View
   return (
-    <div className="relative">
+    <div className={`lg:relative absolute lg:w-[280px] w-0 z-50`}>
       <div
         className={`absolute z-30 text-white min-w-[32px] min-h-[32px] lg:collapse transition-all duration-300 ${
           isExpanded ? "ml-[240px] my-[12px]" : "m-[12px]"
@@ -124,7 +124,7 @@ export default function BaseSidebar() {
       </div>
 
       <aside
-        className={`z-20 bg-brand-semi-inv w-[280px] max-h-screen h-screen flex flex-col jusify-start items-start py-[24px] transition-all duration-300 lg:translate-x-0 ${
+        className={`z-20 bg-brand-inv lg:bg-brand-semi-inv w-[280px] max-h-screen h-screen flex flex-col jusify-start items-start py-[24px] transition-all duration-300 lg:translate-x-0 ${
           isExpanded ? "translate-x-0" : "-translate-x-full"
         }`}
       >
